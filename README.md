@@ -26,8 +26,9 @@ awareness of sustainable energy transitions.</p>
 cd into the repo folder
 run "git lfs install"</p>
 
-<p>open unity, and in the project section click add-"add project from disk" and select the repo
-use should be able to get going from there</p>
+<p>open unity, and in the project section click add-"add project from disk" and select the repo</p>
+<p> MAKE SURE TO EMPTY THE UNITY FOLDER INTO THE REPO, OTHERWISE THE GITIGNORE WONT WORK </p>
+<p></P>use should be able to get going from there</p>
 
 <p>never commit to main unless aproved, all commits are to be firstly made to development branch or your own feature branch</p>
 
