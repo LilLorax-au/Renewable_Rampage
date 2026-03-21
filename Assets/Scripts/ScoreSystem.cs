@@ -28,14 +28,12 @@ public class ScoreManager : MonoBehaviour
     {
         score += amount;
         OnScoreChanged?.Invoke(score);
-        Debug.Log("Score: " + score);
     }
     
     public void RemoveScore(int amount)
     {
         score -= amount;
         OnScoreChanged?.Invoke(score);
-        Debug.Log("Score: " + score);
     }
 
     public int GetScore()
