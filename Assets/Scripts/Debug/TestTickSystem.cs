@@ -12,7 +12,7 @@ public class TestTickSystem : MonoBehaviour
 
    void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
    {
-      Debug.Log("tick: " + e.tick);
+      /*Debug.Log("tick: " + e.tick);*/
       /*scoreManager.AddScore(5);*/
    }
 }
