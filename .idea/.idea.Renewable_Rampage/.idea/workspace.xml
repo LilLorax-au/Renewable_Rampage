@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d861dbb-1042-4bd7-bfd3-600da0e4c424" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestTickSystem.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestTickSystem.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1774053777200</updated>
       <workItem from="1774053779631" duration="479000" />
-      <workItem from="1774054290959" duration="12536000" />
+      <workItem from="1774054290959" duration="12571000" />
     </task>
     <servers />
   </component>
