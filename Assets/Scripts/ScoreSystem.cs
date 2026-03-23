@@ -46,4 +46,16 @@ public class ScoreManager : MonoBehaviour
         score = 0;
         OnScoreChanged?.Invoke(score);
     }
+    
+    public bool TrySpend(int amount)
+    {
+        if (score >= amount)
+        {
+            score -= amount;
+            OnScoreChanged?.Invoke(score);
+            return true;
+        }
+
+        return false;
+    }
 }

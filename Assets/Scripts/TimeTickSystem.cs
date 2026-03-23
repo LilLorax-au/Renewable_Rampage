@@ -3,6 +3,7 @@ using System;
 
 public class TimeTickSystem : MonoBehaviour
 {
+    public GeneratorHandler GeneratorHandler;
     public class OnTickEventArgs :  EventArgs
     {
         public int tick;
@@ -10,7 +11,6 @@ public class TimeTickSystem : MonoBehaviour
 
     public static event EventHandler<OnTickEventArgs> OnTick;
     
-    // 100 ticks per second
     private const float TICK_TIMER_MAX = 0.01f;
 
     private int tick;
