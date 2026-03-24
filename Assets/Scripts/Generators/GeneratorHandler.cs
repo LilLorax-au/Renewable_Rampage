@@ -11,7 +11,6 @@ public class GeneratorHandler : MonoBehaviour
     
     public ScoreManager ScoreManager;
     
-    private float totalPower;
 
     private void Start()
     {
@@ -53,25 +52,25 @@ public class GeneratorHandler : MonoBehaviour
         return total;
     }
 
-    public void AddPower(float amount)
+    public void SellPower(int index)
     {
-        totalPower += amount;
+        GeneratorInstance generator = generators[index];
+        ScoreManager.AddScore(Mathf.RoundToInt(generator.GetPower()));
+        generator.totalPower -= generator.GetPower();
     }
 
-    public void ConvertPower()
+    /*public void ConvertPower()
     {
         ScoreManager.AddScore(Mathf.RoundToInt(totalPower)); 
         totalPower -= totalPower;
-    }
-
-    public float GetPower()
-    {
-        return totalPower;
-    }
+    }*/
     
     void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        float production = GetTotalProductionPerSecond();
-        AddPower(production / 100);
+        foreach (var gen in generators)
+        {
+            float production = gen.GetProductionPerSecond();
+            gen.AddPower(production / 100);
+        }
     }
 }
