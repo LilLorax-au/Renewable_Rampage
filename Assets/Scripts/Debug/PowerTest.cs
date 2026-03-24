@@ -5,6 +5,9 @@ public class PowerTest : MonoBehaviour
 {
     private GeneratorHandler _generatorHandler;
     private TextMeshProUGUI text;
+    private string POWER_UNIT = "Ah"; 
+    public bool useUnit = true;
+    public string placeHolderText = "Power:";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +18,6 @@ public class PowerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Power: " + _generatorHandler.GetPower().ToString("F");
+        text.text = placeHolderText + " " + _generatorHandler.GetPower().ToString("F") + (useUnit? POWER_UNIT : "");
     }
 }
