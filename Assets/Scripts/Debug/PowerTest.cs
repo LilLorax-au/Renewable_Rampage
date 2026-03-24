@@ -15,6 +15,6 @@ public class PowerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Power: " + _generatorHandler.GetPower().ToString("F");
+        /*text.text = "Power: " + _generatorHandler.GetPower().ToString("F");*/
     }
 }
