@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
+        if (SaveLoad.LoadData() == null) return;
         GameData data = SaveLoad.LoadData();
     
         gameLevel = data.gameLevel;
