@@ -33,7 +33,7 @@ public static class SaveLoad
             return data;
         } else
         {
-            Debug.LogError("Error: Save file not found in " + path);
+            Debug.Log("Error: Save file not found in " + path);
             return null;
         }
     }
