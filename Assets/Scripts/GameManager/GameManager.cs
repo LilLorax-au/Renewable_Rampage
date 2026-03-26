@@ -76,10 +76,16 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        totalPowerOutputText.text = Mathf.Round(totalPowerOutput * 100.0f) + "Kwh";
-        UpdateLevel();
-        totalPowerOutputText.text = totalPowerOutput + "Kwh";
-        money = ScoreManager.Instance.score;
+        if (pauseMenu.activeSelf == false && levelObject.activeSelf == true)
+        {
+            totalPowerOutputText.text = Mathf.Round(totalPowerOutput * 100.0f) + "Kwh";
+            UpdateLevel();
+            totalPowerOutputText.text = totalPowerOutput + "Kwh";
+            money = ScoreManager.Instance.score;
+
+        }
+        else return;
+
    
     }
 
