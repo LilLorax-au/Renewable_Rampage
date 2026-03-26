@@ -8,45 +8,43 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Menus Configs")]
-    [SerializeField] public GameObject pauseMenu;
+    [Header("Scene Objects")]
+    public GameObject menuObject;
+    public GameObject levelObject;
+
+    [Header("Scene Active Debug")]
+    public bool activeMenu;
+    public bool activeLevel;
+
+    [Header("Pause Menu Configs")]
+    public GameObject pauseMenu;
     public Button pauseButton;
     public Button resumeButton;
     public Button saveButton;
-    //public Button loadButton;
     public Button mainMenu;
 
-
-    [Header("Slider Configs")]
-    public Slider bar;
-    public float barValue;
-    public float barMaxValue;
-
-    [Header("Level Configs")]
-    public TextMeshProUGUI gameLevelText;
-    public TextMeshProUGUI totalPowerOutputText;
-    public float totalPowerOutput = 1f;
-
-    //GAME DATA
-    [Header("Session Data")]
-    [SerializeField] public int gameLevel;
-    [SerializeField] public int power;
-    [SerializeField] public int money;
-    //public List<string> generators;
-
-   // public GameObject dataObject;
-
+    [Header("Main Menu Configs")]
     private static MainMenu instance;
-    public GameObject menuObject;
-    public GameObject levelObject;
     public TextMeshProUGUI version;
     public Button newGameButton;
     public Button loadButton;
     public Button quitButton;
 
-    public bool activeMenu;
-    public bool activeLevel;
+    [Header("Level Gui Configs")]
+    public TextMeshProUGUI gameLevelText;
+    public TextMeshProUGUI totalPowerOutputText;
+    public Slider bar;
+    public float barValue;
+    public float barMaxValue;
 
+    [Header("Game Data")]
+
+    //CURRENT GAME DATA, THIS IS WHATS SAVED, YOU CAN SEE "GameData.cs" TO SEE DATA
+    public float totalPowerOutput = 1f;
+    [SerializeField] public int gameLevel;
+    [SerializeField] public int power;
+    [SerializeField] public int money;
+    //public List<string> generators;
 
 
     void Start()
