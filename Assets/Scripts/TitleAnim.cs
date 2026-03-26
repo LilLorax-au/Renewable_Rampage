@@ -29,5 +29,11 @@ public class TitleAnim : MonoBehaviour
             transform.position = pos + (transform.up * Mathf.Sin(elapsedTime * frequency) * magnitude) + parent.transform.position + offset;
             //transform.position += Vector3.left * speed * Time.deltaTime;
         }
+        else
+        {
+            elapsedTime += Time.deltaTime;
+            transform.position = pos + (transform.up * Mathf.Sin(elapsedTime * frequency) * magnitude);
+        }
+
     }
 }
