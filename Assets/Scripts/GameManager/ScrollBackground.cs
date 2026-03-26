@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScrollBackground : MonoBehaviour
 {
-    [SerializeField] private float scrollSpeed = -5f;
+    [SerializeField] public float scrollSpeed = -5f;
     public Vector2 startPos;
     public int distance;
 
