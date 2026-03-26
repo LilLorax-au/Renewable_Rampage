@@ -4,7 +4,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    private int score = 50;
+    public int score = 50;
     
     // UI updates on event
     public event System.Action<int> OnScoreChanged;

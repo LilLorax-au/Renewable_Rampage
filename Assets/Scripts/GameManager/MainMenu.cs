@@ -7,12 +7,15 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     private static MainMenu instance;
-    public string mainLevel;
-    public string loadLevel;
+    public GameObject menuObject;
+    public GameObject levelObject;
     public TextMeshProUGUI version;
     public Button newGameButton;
     public Button loadButton;
     public Button quitButton;
+
+    public bool activeMenu;
+    public bool activeLevel;
 
     //void awake()
     //{
@@ -31,14 +34,11 @@ public class MainMenu : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        activeMenu = true;
         GetVersion();
-        newGameButton.onClick.AddListener(LoadLevel);
-        //  loadButton.onClick.AddListener(loadGame);
+        newGameButton.onClick.AddListener(LoadGame);
+        loadButton.onClick.AddListener(LoadGame);
         quitButton.onClick.AddListener(QuitGame);
-
-
-
     }
 
     // Update is called once per frame
@@ -47,24 +47,29 @@ public class MainMenu : MonoBehaviour
         return;
     }
 
-    public void LoadLevel()
+    public void LoadGame()
     {
-        SceneManager.LoadScene(mainLevel);
+        if (activeMenu == true)
+        {
+            activeMenu = true;
+            activeLevel = false;
+            menuObject.SetActive(true);
+            levelObject.SetActive(false);
+        }
+        else if (activeLevel == true)
+        {
+            activeMenu = false;
+            activeLevel = true;
+            menuObject.SetActive(false);
+            levelObject.SetActive(true);
 
+            //Confirm that scene is loaded before loading game data
+
+            Debug.Log($"{levelObject} is loaded.");
+            GameData data = SaveLoad.LoadData();
+            Debug.Log($"Game Data is loaded.");
+        }
     }
-
-    //void loadGame()
-    //{
-    //    SceneManager.LoadScene(mainLevel);
-
-    //    Scene scene = SceneManager.GetSceneByName(mainLevel); //Confirm that scene is loaded before loading game data
-    //    Debug.Log($"{mainLevel} is loaded.");
-
-    //    GameData data = SaveLoad.LoadData();
-    //    Debug.Log($"Game Data is loaded.");
-    //    //this.gameObject.SetActive(false);
-
-    //}
 
     public void QuitGame()
     {
@@ -75,4 +80,5 @@ public class MainMenu : MonoBehaviour
     {
         version.text =  Application.version;
     }
+
 }

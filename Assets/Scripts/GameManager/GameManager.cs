@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEditor.Build.Reporting;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -14,8 +15,7 @@ public class GameManager : MonoBehaviour
     public Button saveButton;
     //public Button loadButton;
     public Button mainMenu;
-    public string menu;
-    
+
 
     [Header("Slider Configs")]
     public Slider bar;
@@ -29,38 +29,62 @@ public class GameManager : MonoBehaviour
 
     //GAME DATA
     [Header("Session Data")]
-    [SerializeField] public int gameLevel = 10;
-    [SerializeField] public int power = 10;
-    [SerializeField] public int money = 100;
+    [SerializeField] public int gameLevel;
+    [SerializeField] public int power;
+    [SerializeField] public int money;
     //public List<string> generators;
-    [SerializeField] public int level;
+
+   // public GameObject dataObject;
+
+    private static MainMenu instance;
+    public GameObject menuObject;
+    public GameObject levelObject;
+    public TextMeshProUGUI version;
+    public Button newGameButton;
+    public Button loadButton;
+    public Button quitButton;
+
+    public bool activeMenu;
+    public bool activeLevel;
 
 
 
     void Start()
     {
+        GameData data = SaveLoad.LoadData();
+
+        activeMenu = true;
+        activeLevel = false;
+        levelObject.SetActive(false);
+        menuObject.SetActive(true);
+        GetVersion();
+        newGameButton.onClick.AddListener(NewGame);
+        loadButton.onClick.AddListener(LoadGame);
+        quitButton.onClick.AddListener(QuitGame);
         pauseButton.onClick.AddListener(PauseGame);
         resumeButton.onClick.AddListener(ContinueGame);
         mainMenu.onClick.AddListener(MainMenu);
         saveButton.onClick.AddListener(SaveGame);
-        //loadButton.onClick.AddListener(LoadGame);
-        LoadGame();//FORCE LOAD, I HAVE YET TO SORT LOAD ON SCENE CHANGE, WILL ADRESS IN UPCOMING COMIT
         gameLevelText.text = "Lv:" + gameLevel;
         totalPowerOutputText.text = totalPowerOutput + "Kwh";
         bar.maxValue = barMaxValue;
         barValue = bar.value;
-         
+        money = ScoreManager.Instance.score;
+
     }
     void Update()
     {
         totalPowerOutputText.text = Mathf.Round(totalPowerOutput * 100.0f) + "Kwh";
         UpdateLevel();
         totalPowerOutputText.text = totalPowerOutput + "Kwh";
-        return;
+        money = ScoreManager.Instance.score;
+   
     }
+
+
     private void PauseGame()
     {
-        
+
         pauseMenu.SetActive(true);
         //Disable scripts that still work while timescale is set to 0
 
@@ -78,32 +102,32 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
+                
         SaveLoad.SaveData(this);
-        Debug.Log($"Game Data is loaded.");
+        Debug.Log($"Game Data is Saved.");
 
-    }
 
-    public void LoadGame()
-    {
-        if (SaveLoad.LoadData() == null) return;
-        GameData data = SaveLoad.LoadData();
-    
-        gameLevel = data.gameLevel;
-        power = data.power;
-        money = data.money;
-    
     }
 
     void MainMenu()
-    {
-        SceneManager.LoadScene(menu);
+    {        
+
+        activeMenu = true;
+        activeLevel = false;
+        menuObject.SetActive(true);
+        StartCoroutine(Delay(0.01f)); // Safety Delay to ensure action is complete
+        Time.timeScale = 1;
+        pauseButton.gameObject.SetActive(true);
+        pauseMenu.SetActive(false);
+        levelObject.SetActive(false);
+
     }
 
     private IEnumerator Delay(float delay)
     {
         yield return new WaitForSeconds(delay);
         // Safety delay for pause game
-        
+
     }
 
     void UpdateLevel()
@@ -112,7 +136,8 @@ public class GameManager : MonoBehaviour
         if (barValue >= barMaxValue)
         {
             bar.value = 0;
-            LevelUp();
+            gameLevel = gameLevel + 1; ;
+            gameLevelText.text = "Lv:" + gameLevel;
         }
         else if (barValue != barMaxValue)
         {
@@ -120,15 +145,58 @@ public class GameManager : MonoBehaviour
             totalPowerOutput += 0.1f;
             totalPowerOutputText.text = Mathf.Round(totalPowerOutput * 10.0f) * gameLevel + "Kwh";
             StartCoroutine(Delay(1.0f));
+            gameLevelText.text = "Lv:" + gameLevel;
 
             return;
         }
     }
 
-    void LevelUp()
+
+    public void NewGame()
     {
-        gameLevel = gameLevel + 1; ;
+        activeMenu = false;
+        activeLevel = true;
+        menuObject.SetActive(false);
+        levelObject.SetActive(true);
+
+        //////////////////////////////////////////ISTANTIATE FRESH VALUES///////////////////////////////
+        gameLevel = 1;
+        power = 0;
+        money = 100;
+        ScoreManager.Instance.ResetScore();
         gameLevelText.text = "Lv:" + gameLevel;
     }
-    
+
+    public void LoadGame()
+    {
+        NewGame();
+        if (SaveLoad.LoadData() == null) return;
+        //Confirm that scene is loaded before loading game data
+
+        //Debug.Log($"{levelObject} is loaded.");
+        GameData data = SaveLoad.LoadData();
+        gameLevel = data.gameLevel;
+        power = data.power;
+        money = data.money;
+        ScoreManager.Instance.AddScore(money);
+        Debug.Log($"Game Data is loaded.");
+        gameLevelText.text = "Lv:" + gameLevel;
+
+
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    void GetVersion()
+    {
+        version.text = Application.version;
+    }
 }
+
+
+ 
+
+

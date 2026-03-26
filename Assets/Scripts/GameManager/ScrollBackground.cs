@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class ScrollBackground : MonoBehaviour
 {
-    [SerializeField] public float scrollSpeed = -5f;
+    public float scrollSpeed = -5f;
     public Vector2 startPos;
     public int distance;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        startPos = transform.position;
+    }
+
     void Start()
     {
         startPos = transform.position;
