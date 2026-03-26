@@ -37,8 +37,13 @@ public class GameManager : MonoBehaviour
     public float barValue;
     public float barMaxValue;
 
-    [Header("Game Data")]
+    [Header("New Game Configs")]//New game config
+    public float newGameTotalPowerOutput = 0.0f;
+    public int newGameLevel = 1;
+    public int newPower = 0;
+    public int newMoney = 100;
 
+    [Header("(DEBUG) Data To Save:")]
     //CURRENT GAME DATA, THIS IS WHATS SAVED, YOU CAN SEE "GameData.cs" TO SEE DATA
     public float totalPowerOutput = 1f;
     [SerializeField] public int gameLevel;
@@ -50,7 +55,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameData data = SaveLoad.LoadData();
-
         activeMenu = true;
         activeLevel = false;
         levelObject.SetActive(false);
@@ -158,9 +162,10 @@ public class GameManager : MonoBehaviour
         levelObject.SetActive(true);
 
         //////////////////////////////////////////ISTANTIATE FRESH VALUES///////////////////////////////
-        gameLevel = 1;
-        power = 0;
-        money = 100;
+        totalPowerOutput = newGameTotalPowerOutput;
+        gameLevel = newGameLevel;
+        power = newPower;
+        money = newMoney;
         ScoreManager.Instance.ResetScore();
         gameLevelText.text = "Lv:" + gameLevel;
     }
