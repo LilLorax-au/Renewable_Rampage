@@ -10,7 +10,7 @@ public class GeneratorHandler : MonoBehaviour
     public Transform GeneratorsPanel;
     
     public ScoreManager ScoreManager;
-    
+    private float newSpeed;
 
     private void Start()
     {
@@ -28,6 +28,7 @@ public class GeneratorHandler : MonoBehaviour
             if (generator.count > 0)
             {
                 generator.count++;
+                
             }
             else
             {
@@ -43,8 +44,16 @@ public class GeneratorHandler : MonoBehaviour
     public void LevelUp(int index)
     {
         var generator = generators[index];
-
         int level = generator.level++;
+        float newSpeed = generator.GetNextSpeed();
+        //float baseSpeed = generator.baseGenerationSpeed * Mathf.Pow(1.15f, level);
+    }
+
+    public void ManagerLevel(int index)
+    {
+        var generator = generators[index];
+        generator.managerLevel++;
+        
     }
 
     public float GetTotalProductionPerSecond()
@@ -78,6 +87,7 @@ public class GeneratorHandler : MonoBehaviour
         {
             float production = gen.GetProductionPerSecond();
             gen.AddPower(production / 100);
+
         }
     }
 

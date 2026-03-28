@@ -15,6 +15,10 @@ public class OwnedGenerator : MonoBehaviour
     public TextMeshProUGUI generatorName;
     public GameObject sellButton;
 
+    public Image managerImage;
+
+    public int managerLevel;
+
 
     [Tooltip("Slider Bar")]
     public Slider bar;
@@ -44,11 +48,28 @@ public class OwnedGenerator : MonoBehaviour
 
     void Update()
     {
+        managerLevel = generator.managerLevel;
+        //has manager?
+        if (managerLevel >= 1)
+        {
+            managerImage.enabled = true;
+            if (bar.value >= bar.maxValue)
+            {
+                generatorHandler.SellPower(generatorIndex);// basic manager logic
+            }
+            
+        }
+        else if (managerLevel == 0)
+        {
+            managerImage.enabled = false;
+        }
+
         countText.text = generator.count.ToString() + "x";
         levelText.text = "LV:" + generator.level.ToString();
         sellButtonText.text = "Sell Power\n" + generator.totalPower.ToString("N0") + "/" + generator.GetPowerCap().ToString("N0");
         UpdateBar();
     }
+
 
     public void SellButton()
     {

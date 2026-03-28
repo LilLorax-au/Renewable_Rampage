@@ -3,12 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEditor.Build.Reporting;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
     private GeneratorHandler generatorHandler;
 
     [Header("Scene Objects")]
@@ -36,6 +35,7 @@ public class GameManager : MonoBehaviour
     [Header("Level Gui Configs")]
     public TextMeshProUGUI gameLevelText;
     public TextMeshProUGUI totalPowerOutputText;
+    public GameObject debugMenu;
     public Slider bar;
     public float barValue;
     public float barMaxValue;
@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         generatorHandler = FindAnyObjectByType<GeneratorHandler>();
         totalPowerOutput = generatorHandler.GetTotalProductionPerSecond();
 
+        debugMenu.SetActive(false);
         GameData data = SaveLoad.LoadData();
         activeMenu = true;
         activeLevel = false;
@@ -84,15 +85,28 @@ public class GameManager : MonoBehaviour
     {
         if (pauseMenu.activeSelf == false && levelObject.activeSelf == true)
         {
-            ///FIX
-            barValue = totalPowerOutput * gameLevel;
+    
+            
+      
             totalPowerOutput = generatorHandler.GetTotalProductionPerSecond();
             UpdateLevel();
             totalPowerOutputText.text = totalPowerOutput + "Kwh";
             money = ScoreManager.Instance.score;
-
+            barValue = totalPowerOutput;
         }
+        if (Keyboard.current.eKey.wasPressedThisFrame && debugMenu.activeSelf == false)
+        {
+            Debug.Log("Debug Menu");
+            debugMenu.SetActive(true);
+        }
+        else if (Keyboard.current.eKey.wasPressedThisFrame && debugMenu.activeSelf == true)
+        {
+            Debug.Log("Debug Menu Closed");
+            debugMenu.SetActive(false);
+        }
+
         else return;
+
 
    
     }
@@ -146,19 +160,18 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void UpdateLevel()///FIX//////////////////////////////////////////////////////////////////
+    void UpdateLevel()
     {
-        //barValue = totalPowerOutput * 2;
-        if (barValue == barMaxValue)
-        {
-            bar.maxValue = totalPowerOutput + totalPowerOutput * 0.5f;
-            bar.value = barValue;
+        if (barValue >= bar.maxValue)
+        {    
+            bar.value = totalPowerOutput - totalPowerOutput;
+            bar.maxValue = (barMaxValue + barValue) * Mathf.Pow(1.25f, gameLevel);
             gameLevel = gameLevel + 1; 
             gameLevelText.text = "Lv:" + gameLevel;
             Debug.Log("LevelUp");
             return;
         }
-        else if (barValue <= barMaxValue)
+        else if (barValue <= bar.maxValue)
         {
             bar.value = barValue;
             totalPowerOutputText.text = Mathf.Round(totalPowerOutput * 10.0f) + "Kwh";
