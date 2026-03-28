@@ -11,7 +11,10 @@ public class OwnedGenerator : MonoBehaviour
     private TextMeshProUGUI sellButtonText;
     public Image buttonImage;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI generatorName;
     public GameObject sellButton;
+
 
     [Tooltip("Slider Bar")]
     public Slider bar;
@@ -30,7 +33,9 @@ public class OwnedGenerator : MonoBehaviour
     {
         generator = generatorHandler.generators[generatorIndex];
         buttonImage.sprite = generator.data.sprite;
-        countText.text = generator.count.ToString() + "x"; 
+        countText.text = generator.count.ToString() + "X";
+        levelText.text = "LV:" + generator.level.ToString();
+        generatorName.text = generator.name.ToString();
         sellButtonText.text = "Sell Power\n" + generator.totalPower.ToString("N0") + "/" + generator.GetPowerCap().ToString("N0");
 
         bar.maxValue = generator.totalPower + generator.GetPowerCap();
@@ -40,6 +45,7 @@ public class OwnedGenerator : MonoBehaviour
     void Update()
     {
         countText.text = generator.count.ToString() + "x";
+        levelText.text = "LV:" + generator.level.ToString();
         sellButtonText.text = "Sell Power\n" + generator.totalPower.ToString("N0") + "/" + generator.GetPowerCap().ToString("N0");
         UpdateBar();
     }

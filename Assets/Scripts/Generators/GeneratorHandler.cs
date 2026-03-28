@@ -40,6 +40,13 @@ public class GeneratorHandler : MonoBehaviour
         }
     }
 
+    public void LevelUp(int index)
+    {
+        var generator = generators[index];
+
+        int level = generator.level++;
+    }
+
     public float GetTotalProductionPerSecond()
     {
         float total = 0f;
@@ -73,4 +80,7 @@ public class GeneratorHandler : MonoBehaviour
             gen.AddPower(production / 100);
         }
     }
+
+
+
 }

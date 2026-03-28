@@ -6,10 +6,22 @@ public class GeneratorInstance
     public GeneratorData data;
     public int count;
     public float totalPower;
+    public int level;
+    public string name;
 
     public float GetProductionPerSecond()
     {
         return count * data.baseProductionPerSecond;
+    }
+
+    public string GetName()
+    {
+        return name = data.generatorName;
+    }
+
+    public int GetLevel()
+    {
+        return level = data.level;
     }
 
     public float GetPowerCap()
@@ -38,5 +50,6 @@ public class GeneratorInstance
     {
         return totalPower;
     }
-    
+
+
 }

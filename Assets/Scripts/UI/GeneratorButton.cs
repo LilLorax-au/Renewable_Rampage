@@ -27,5 +27,11 @@ public class GeneratorButton : MonoBehaviour
     {
         generatorHandler.BuyGenerator(generatorIndex);
         costText.text = "$" + generator.GetNextCost().ToString("N0");
+        //DEBUG
+        generatorHandler.LevelUp(generatorIndex);
+
     }
+
+
+
 }

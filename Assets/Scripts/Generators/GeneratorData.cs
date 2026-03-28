@@ -8,4 +8,7 @@ public class GeneratorData : ScriptableObject
     public float baseCost;
     public float basePowerCap;
     public Sprite sprite;
+
+    public int level;
+    public bool hasManager;
 }
