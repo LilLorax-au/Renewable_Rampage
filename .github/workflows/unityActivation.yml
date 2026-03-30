@@ -11,8 +11,7 @@ jobs:
 
       - uses: game-ci/unity-activate@v2.0.0
         id: getManualLicenseFile
-        with: 6000.4.0f1
-
+        
       - uses: actions/upload-artifact@v4
         with:
           name: Manual Activation File
