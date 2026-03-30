@@ -8,8 +8,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: game-ci/unity-activate@v2.0.0
-        
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Manual Activation File
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
