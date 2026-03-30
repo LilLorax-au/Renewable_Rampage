@@ -201,5 +201,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/StandaloneWindows64/RenewableRampage.zip
+          folder: build/StandaloneWindows64
           tag_name: ${{ steps.bump.outputs.new_tag }}
