@@ -194,4 +194,4 @@ jobs:
         with:
           title: RenewableRampage
           prerelease: true
-          artifacts: .build/StandaloneWindows64
+          artifacts: .build/StandaloneWindows64/build-StandaloneWindows64
