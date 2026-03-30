@@ -7,9 +7,7 @@ env:
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
   
-permissions:
-  contents: read
-  issues: write
+permissions: read-all|write-all
   
 jobs:
   testRunnerInEditMode:
@@ -185,7 +183,7 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          name: build-WebGL
+          name: build-Windows
           path: build
 
       - name: Deploy 🚀
