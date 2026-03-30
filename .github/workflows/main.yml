@@ -182,7 +182,8 @@ jobs:
           path: build/Android
 
   Publish:
-    name: Build for Android 📱
+    needs: testRunner
+    name: Publish Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -193,5 +194,4 @@ jobs:
         with:
           title: RenewableRampage
           prerelease: true
-          tag: DEV:0.4
           artifacts: .build/StandaloneWindows64
