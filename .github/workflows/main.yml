@@ -19,25 +19,19 @@ permissions:
   statuses: write
   
 jobs:
-  testRunnerInEditMode:
-    name: Activate 📝
+  requestManualActivationFile:
+    name: Unity - Activate
     runs-on: ubuntu-latest
-    env:
-      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}   
     steps:
-      # Checkout repository (required to test local actions)
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Activate license
-        uses: MirageNet/unity-runner@3.1.0
+      - uses: game-ci/unity-activate@v2.0.0
         with:
-          entrypoint: /activate.sh
-
-      - name: Run tests
-        uses: MirageNet/unity-runner@3.1.0
-        with:
-          args: -runTests -projectPath .ilePath }}}
+           # Choose license type to use [ Personal, Professional, Floating ]
+          username: ${{ secrets.UNITY_USERNAME }}
+          password: ${{ secrets.UNITY_PASSWORD }}
+          license:  ${{ secrets.UNITY_LICENSE }}
+          # serial: ${{ secrets.UNITY_SERIAL }} # Required for pro activations
+          # configuration: ${{ secrets.UNITY_SERVICES_CONFIG }} # Required for floating license activations
+          license-version: '6.x' # Optional, defaults to '6.x', can be set to '5.x' for Unity 5
 
   testRunner:
     name: Test in ${{ matrix.testMode }} ✨
