@@ -187,7 +187,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Create a Release
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
