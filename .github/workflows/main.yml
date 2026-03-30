@@ -175,18 +175,13 @@ jobs:
           name: build-Android
           path: build/Android
 
-
-
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v3
-        - name: Publish Build 📱
-        uses: elgohr/Github-Release-Action@v5
-        env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        with:
-            title: RenewableRampage 0.4
-            tag: Dev
-            prerelease: true
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@v5
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        title: RenewableRampage 0.4
