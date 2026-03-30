@@ -6,8 +6,17 @@ env:
   UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
-permissions: read-all|write-all
+permissions: 
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  packages: write
+  pages: write
+  repository-projects: write
+  statuses: write
   
 jobs:
   testRunnerInEditMode:
