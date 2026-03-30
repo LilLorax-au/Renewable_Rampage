@@ -1,8 +1,7 @@
 name: GameCI Template 🎮
-on:
-  push:
-    tags:
-      - "0.4.0"
+
+on: push
+
 
 env:
   UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -189,7 +188,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+
+      - name: Bump version and push tag
+        id: bump
+        uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
+          WITH_V: false
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: build/RenewableRampage.zip
+          tag_name: ${{ steps.bump.outputs.new_tag }}
