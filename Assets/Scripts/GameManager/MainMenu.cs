@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.Build.Reporting;
+
 using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
     private static MainMenu instance;
+    private GetVersion ver;
     public GameObject menuObject;
     public GameObject levelObject;
     public TextMeshProUGUI version;
@@ -35,7 +36,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         activeMenu = true;
-        GetVersion();
+        version.text = ver.ver;
         newGameButton.onClick.AddListener(LoadGame);
         loadButton.onClick.AddListener(LoadGame);
         quitButton.onClick.AddListener(QuitGame);
@@ -76,9 +77,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void GetVersion()
-    {
-        version.text =  Application.version;
-    }
 
 }
