@@ -138,6 +138,8 @@ jobs:
           path: build/StandaloneWindows64
 
 
+
+
   buildAndroid:
     needs: testRunner
     name: Build for Android 📱
@@ -199,5 +201,5 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/RenewableRampage.zip
+          files: build/StandaloneWindows64/RenewableRampage.zip
           tag_name: ${{ steps.bump.outputs.new_tag }}
