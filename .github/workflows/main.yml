@@ -182,7 +182,7 @@ jobs:
           path: build/Android
 
   Publish:
-    needs: testRunner
+    needs: buildWindows
     name: Publish Release
     runs-on: ubuntu-latest
     steps:
