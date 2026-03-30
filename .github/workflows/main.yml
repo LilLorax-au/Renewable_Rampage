@@ -137,9 +137,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: RenewableRampage 0.4
+          title: RenewableRampage
           prerelease: true
-          tag: Prototype Build
+          tag: DEV:0.4
 
   buildAndroid:
     needs: testRunner
