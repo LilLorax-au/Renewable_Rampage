@@ -1,13 +1,13 @@
-name: Get Unity license activation file 🔐
+name: Get Unity license activation file 
 
 on: workflow_dispatch
 
 jobs:
   requestManualActivationFile:
-    name: Request manual activation file 🔑
+    name: Unity - Activate
     runs-on: ubuntu-latest
     steps:
-      - uses: buildalon/activate-unity-license@v2
+      - uses: game-ci/unity-activate@v2.0.0
         with:
            # Choose license type to use [ Personal, Professional, Floating ]
           username: ${{ secrets.UNITY_USERNAME }}
@@ -16,4 +16,3 @@ jobs:
           # serial: ${{ secrets.UNITY_SERIAL }} # Required for pro activations
           # configuration: ${{ secrets.UNITY_SERVICES_CONFIG }} # Required for floating license activations
           license-version: '6.x' # Optional, defaults to '6.x', can be set to '5.x' for Unity 5
-
