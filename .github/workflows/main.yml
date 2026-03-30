@@ -131,6 +131,16 @@ jobs:
           name: build-StandaloneWindows64
           path: build/StandaloneWindows64
 
+      - uses: actions/checkout@v3
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          title: RenewableRampage 0.4
+          prerelease: true
+          tag: Prototype Build
+
   buildAndroid:
     needs: testRunner
     name: Build for Android 📱
@@ -175,13 +185,4 @@ jobs:
           name: build-Android
           path: build/Android
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Create a Release
-      uses: elgohr/Github-Release-Action@v5
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        title: RenewableRampage 0.4
+
