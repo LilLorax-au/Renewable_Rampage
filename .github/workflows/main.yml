@@ -1,8 +1,8 @@
 name: GameCI Template 🎮
-
-on: push
-tags:
-    - "0.4.0"
+on:
+  push:
+    tags:
+      - "0.4.0"
 
 env:
   UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
