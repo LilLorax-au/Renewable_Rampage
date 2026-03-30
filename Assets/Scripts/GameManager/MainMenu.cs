@@ -7,7 +7,7 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     private static MainMenu instance;
-    private GetVersion ver;
+    //private GetVersion ver;
     public GameObject menuObject;
     public GameObject levelObject;
     public TextMeshProUGUI version;
@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         activeMenu = true;
-        version.text = ver.ver;
+       // version.text = ver.ver;
         newGameButton.onClick.AddListener(LoadGame);
         loadButton.onClick.AddListener(LoadGame);
         quitButton.onClick.AddListener(QuitGame);

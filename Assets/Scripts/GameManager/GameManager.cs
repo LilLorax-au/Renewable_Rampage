@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Main Menu Configs")]
     private static MainMenu instance;
-    public TextMeshProUGUI version;
+    public string version;
+    public TextMeshProUGUI verText;
     public Button newGameButton;
     public Button loadButton;
     public Button quitButton;
@@ -66,7 +67,8 @@ public class GameManager : MonoBehaviour
         activeLevel = false;
         levelObject.SetActive(false);
         menuObject.SetActive(true);
-        GetVersion();
+        verText.text = version;
+        verText.faceColor = Color.red;
         newGameButton.onClick.AddListener(NewGame);
         loadButton.onClick.AddListener(LoadGame);
         quitButton.onClick.AddListener(QuitGame);
@@ -220,11 +222,6 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    void GetVersion()
-    {
-        version.text = Application.version;
     }
 }
 
