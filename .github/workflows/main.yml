@@ -7,6 +7,10 @@ env:
   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
   
+permissions:
+  contents: read
+  issues: write
+  
 jobs:
   testRunnerInEditMode:
     name: Activate 📝
