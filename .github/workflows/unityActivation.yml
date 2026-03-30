@@ -1,10 +1,12 @@
-name: Get Unity license activation file 🔐
-
 on: workflow_dispatch
 
 jobs:
-  requestManualActivationFile:
-    name: Request manual activation file 🔑
+  test:
+    name: Request manual activation file
     runs-on: ubuntu-latest
-    steps:
-      - uses: game-ci/unity-activate@v2.0.0
+  steps:
+    uses: buildalon/activate-unity-license@v2
+    with:
+      license: 'Personal' # Choose license type to use [ Personal, Professional, Floating ]
+      username: ${{ secrets.UNITY_USERNAME }}
+      password: ${{ secrets.UNITY_PASSWORD }}
