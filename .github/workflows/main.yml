@@ -172,7 +172,7 @@ jobs:
 
 
   deployPages:
-    needs: buildWebGL
+    needs:  buildWindows
     name: Deploy to Github Pages 🚀
     runs-on: ubuntu-latest
     steps:
@@ -188,4 +188,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
-          folder: build/WebGL
+          folder: build/Windows
