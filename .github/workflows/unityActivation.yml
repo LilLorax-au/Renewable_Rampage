@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: game-ci/unity-request-activation-file@v4
+      - uses: game-ci/unity-activate@v2.0.0
         id: getManualLicenseFile
+        with: 6000.4.0f1
 
       - uses: actions/upload-artifact@v4
         with:
