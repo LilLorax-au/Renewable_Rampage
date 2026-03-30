@@ -7,10 +7,14 @@ jobs:
     name: Request manual activation file 🔑
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: game-ci/unity-request-activation-file@v2
-        id: getManualLicenseFile
+      - uses: buildalon/activate-unity-license@v2
+        with:
+          license: 'Personal' # Choose license type to use [ Personal, Professional, Floating ]
+          username: ${{ secrets.UNITY_USERNAME }}
+          password: ${{ secrets.UNITY_PASSWORD }}
+          # serial: ${{ secrets.UNITY_SERIAL }} # Required for pro activations
+          # configuration: ${{ secrets.UNITY_SERVICES_CONFIG }} # Required for floating license activations
+          license-version: '6.x' # Optional, defaults to '6.x', can be set to '5.x' for Unity 5
 
       - uses: actions/upload-artifact@v4
         with:
