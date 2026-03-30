@@ -45,7 +45,7 @@ jobs:
             Library-
 
       - name: Run tests
-        uses: game-ci/unity-test-runner@v2
+        uses: game-ci/unity-test-runner@v4
         id: testRunner
         with:
           testMode: ${{ matrix.testMode }}
@@ -92,7 +92,7 @@ jobs:
             Library-build-
             Library-
 
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: WebGL
 
@@ -136,7 +136,7 @@ jobs:
             Library-build-
             Library-
 
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
 
@@ -180,7 +180,7 @@ jobs:
             Library-build-
             Library-
 
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: Android
 
