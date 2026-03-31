@@ -77,8 +77,9 @@ jobs:
           path: Library
           key: Library-test-project-${{ matrix.targetPlatform }}
           restore-keys: |
-            Library-test-project-
+            Library-build-
             Library-
+           
 
       - name: Run tests
         uses: game-ci/unity-test-runner@v4
