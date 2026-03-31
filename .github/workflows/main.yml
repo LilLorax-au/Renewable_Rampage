@@ -199,8 +199,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
           WITH_V: false
 
+      - uses: actions/upload-artifact@v4
+      - run: mkdir -p ./build
+      - run: echo RenewableRampage > ./build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          filename: RenewableRampage
+          path: ./build/RenewableRampage.zip
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          folder: build/StandaloneWindows64
+          file: RenewableRampage
           tag_name: ${{ steps.bump.outputs.new_tag }}
+    
