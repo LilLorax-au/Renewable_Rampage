@@ -136,7 +136,11 @@ jobs:
         with:
          filename: RenewableRampage.zip
          path: build/StandaloneWindows64
-
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          file: RenewableRampage.zip
+          path: build/StandaloneWindows64
 
   buildAndroid:
     needs: testRunner
@@ -182,21 +186,21 @@ jobs:
           name: build-Android
           path: build/Android
 
-  Publish:
-    needs: buildWindows
-    name: Publish Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
+ # Publish:
+   # needs: buildWindows
+   # name: Publish Release
+   # runs-on: ubuntu-latest
+    #steps:
+    #  - uses: actions/checkout@v5
     
-      - name: Download a single artifact
-        uses: actions/download-artifact@v5
-        with:
-          name: RenewableRampage.zip
-          path: build/StandaloneWindows64
+      #- name: Download a single artifact
+      #  uses: actions/download-artifact@v5
+      #  with:
+      #    name: RenewableRampage.zip
+       #   path: build/StandaloneWindows64
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          file: RenewableRampage.zip
-          path: build/StandaloneWindows64
+     # - name: Release
+       # uses: softprops/action-gh-release@v1
+       # with:
+       #   file: RenewableRampage.zip
+       #   path: build/StandaloneWindows64
