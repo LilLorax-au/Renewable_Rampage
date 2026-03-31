@@ -135,7 +135,7 @@ jobs:
       - run: mkdir -p .build
       - uses: actions/upload-artifact@v4
         with:
-         filename: RenewableRampage
+         filename: RenewableRampage.zip
          path: .build/
 
 
@@ -193,7 +193,7 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v5
         with:
-          name: RenewableRampage
+          name: RenewableRampage.zip
 
       - name: Release
         uses: softprops/action-gh-release@v1
