@@ -132,11 +132,10 @@ jobs:
       - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
-      - run: mkdir -p .build
       - uses: actions/upload-artifact@v4
         with:
          filename: RenewableRampage.zip
-         path: .build/
+         path: build/StandaloneWindows64
 
 
   buildAndroid:
@@ -194,9 +193,10 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: RenewableRampage.zip
+          path: build/StandaloneWindows64
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           file: RenewableRampage.zip
-          path: .build/
+          path: build/StandaloneWindows64
