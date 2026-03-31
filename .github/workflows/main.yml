@@ -132,18 +132,13 @@ jobs:
       - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
-
-      - uses: actions/upload-artifact@v4
       - run: mkdir -p ./build
-      - run: echo RenewableRampage > ./build
-
+      #- run: echo RenewableRampage > ./build
+      
       - uses: actions/upload-artifact@v4
         with:
-          filename: RenewableRampage
-          path: ./build/RenewableRampage.zip
-
-
-
+         filename: RenewableRampage
+         path: ./build/RenewableRampage.zip  
 
 
   buildAndroid:
