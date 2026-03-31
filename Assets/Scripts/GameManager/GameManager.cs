@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     [Header("New Game Configs")]//New game config
     public float newGameTotalPowerOutput = 0.0f;
     public int newGameLevel = 1;
-    public int newPower = 0;
+    //public int newPower = 0;
     public int newMoney = 100;
 
     [Header("(DEBUG) Data To Save:")]
@@ -194,9 +194,10 @@ public class GameManager : MonoBehaviour
         //////////////////////////////////////////ISTANTIATE FRESH VALUES///////////////////////////////
         totalPowerOutput = newGameTotalPowerOutput;
         gameLevel = newGameLevel;
-        power = newPower;
+        power = 0;
         money = newMoney;
         ScoreManager.Instance.ResetScore();
+        ScoreManager.Instance.AddScore(newMoney);
         gameLevelText.text = "Lv:" + gameLevel;
 
         generatorHandler.count = 0;
@@ -215,6 +216,7 @@ public class GameManager : MonoBehaviour
         gameLevel = data.gameLevel;
         power = data.power;
         money = data.money;
+        ScoreManager.Instance.ResetScore();
         ScoreManager.Instance.AddScore(money);
         Debug.Log($"Game Data is loaded.");
         gameLevelText.text = "Lv:" + gameLevel;
