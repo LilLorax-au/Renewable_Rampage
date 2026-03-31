@@ -137,12 +137,12 @@ jobs:
           
       - uses: actions/upload-artifact@v4
         with:
-         filename: RenewableRampage.zip
+         filename: build-StandaloneWindows64
          path: build/StandaloneWindows64
          
       - uses: actions/download-artifact@v4
         with:
-         name: RenewableRampage.zip
+         name: build-StandaloneWindows64
          path: build/StandaloneWindows64
          
       - name: Bump version and push tag
@@ -152,7 +152,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          file: RenewableRampage.zip
+          file: build-StandaloneWindows64
           path: build/StandaloneWindows64
           tag: ${{ steps.tag_version.outputs.new_tag }}
 
