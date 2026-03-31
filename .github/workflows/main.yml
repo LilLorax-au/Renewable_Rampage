@@ -127,6 +127,7 @@ jobs:
           key: Library-build-StandaloneWindows64
           restore-keys: |
             Library-build-
+            Library-
 
       - uses: game-ci/unity-builder@v4
         with:
