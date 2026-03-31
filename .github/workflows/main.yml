@@ -1,7 +1,7 @@
 name: GameCI Template 🎮
 
-on:
-  workflow_dispatch:
+on: push
+
 
 
 env:
