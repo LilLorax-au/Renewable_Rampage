@@ -1,3 +1,5 @@
+[![GameCI Template 🎮](https://github.com/LilLorax-au/Renewable_Rampage/actions/workflows/main.yml/badge.svg)](https://github.com/LilLorax-au/Renewable_Rampage/actions/workflows/main.yml)
+
 <h1>Renewable_Rampage</h1>
 <h2>Introduction:</h2>
 
