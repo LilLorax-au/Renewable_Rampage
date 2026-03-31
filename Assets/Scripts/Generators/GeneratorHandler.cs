@@ -8,6 +8,7 @@ public class GeneratorHandler : MonoBehaviour
     public int count;
     public GameObject OwnedGeneratorPrefab;
     public Transform GeneratorsPanel;
+    private List<GameObject> genInstances = new List<GameObject>();
     
     public ScoreManager ScoreManager;
     private float newSpeed;
@@ -29,6 +30,8 @@ public class GeneratorHandler : MonoBehaviour
             if (generator.count > 0)
             {
                 generator.count++;
+                
+
             }
             else
             {
@@ -36,6 +39,7 @@ public class GeneratorHandler : MonoBehaviour
                 GameObject newGen = Instantiate(OwnedGeneratorPrefab, GeneratorsPanel);
                 newGen.GetComponent<OwnedGenerator>().generatorIndex = index;
                 count = generator.count;
+                genInstances.Add(newGen);
             }
 
             Debug.Log("Bought! New count: " + generator.count);
@@ -92,6 +96,21 @@ public class GeneratorHandler : MonoBehaviour
         }
     }
 
+
+    public void NewGameList()
+    {
+        foreach (var gen in generators)
+        {
+            gen.count = 0;
+            
+        }
+
+        foreach (var gen in genInstances)
+        {
+            Destroy(gen.gameObject);
+
+        }
+    }
 
 
 }

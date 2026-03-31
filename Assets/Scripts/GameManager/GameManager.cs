@@ -199,15 +199,28 @@ public class GameManager : MonoBehaviour
         ScoreManager.Instance.ResetScore();
         ScoreManager.Instance.AddScore(newMoney);
         gameLevelText.text = "Lv:" + gameLevel;
-
-        generatorHandler.count = 0;
-            //generatorHandler.generators.Clear();
+        generatorHandler.NewGameList();
+            
 
     }
 
     public void LoadGame()
     {
-        NewGame();
+        activeMenu = false;
+        activeLevel = true;
+        menuObject.SetActive(false);
+        levelObject.SetActive(true);
+
+        //////////////////////////////////////////ISTANTIATE FRESH VALUES///////////////////////////////CRUDE
+        totalPowerOutput = newGameTotalPowerOutput;
+        gameLevel = newGameLevel;
+        power = 0;
+        money = newMoney;
+        ScoreManager.Instance.ResetScore();
+        ScoreManager.Instance.AddScore(newMoney);
+        gameLevelText.text = "Lv:" + gameLevel;
+
+
         if (SaveLoad.LoadData() == null) return;
         //Confirm that scene is loaded before loading game data
 
