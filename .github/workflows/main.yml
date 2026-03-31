@@ -133,7 +133,6 @@ jobs:
       - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
-            Library-
             
       - uses: rymndhng/release-on-push-action@master
         with:
