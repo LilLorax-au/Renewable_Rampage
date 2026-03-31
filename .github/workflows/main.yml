@@ -127,15 +127,21 @@ jobs:
           key: Library-build-StandaloneWindows64
           restore-keys: |
             Library-build-
-            Library-
 
       - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
+            Library-
+            
+      - uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: minor
+          
       - uses: actions/upload-artifact@v4
         with:
          filename: RenewableRampage.zip
          path: build/StandaloneWindows64
+         
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
