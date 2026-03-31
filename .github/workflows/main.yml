@@ -132,13 +132,11 @@ jobs:
       - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
-      - run: mkdir -p ./build
-      #- run: echo RenewableRampage > ./build
-      
+      - run: mkdir -p .build
       - uses: actions/upload-artifact@v4
         with:
          filename: RenewableRampage
-         path: ./build/RenewableRampage.zip  
+         path: .build/
 
 
   buildAndroid:
@@ -191,18 +189,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-
-      - name: Bump version and push tag
-        id: bump
-        uses: anothrNick/github-tag-action@v1 # Don't use @master or @v1 unless you're happy to test the latest version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
-          WITH_V: false
-
+    
+      - name: Download a single artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: RenewableRampage
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          file: RenewableRampage
-          tag_name: ${{ steps.bump.outputs.new_tag }}
-    
+          file: RenewableRampage.zip
+          path: .build/
