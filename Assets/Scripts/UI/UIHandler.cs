@@ -12,7 +12,7 @@ public class UIHandler : MonoBehaviour
         scoreText.text = "$" + ScoreManager.Instance.GetScore().ToString("N0");
     }
 
-    void UpdateUI(int newScore)
+    void UpdateUI(long newScore)
     {
         scoreText.text = ("$" + newScore.ToString("N0"));
     }

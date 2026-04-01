@@ -6,8 +6,8 @@ using UnityEngine;
 public class GameData
 {
     public int gameLevel;
-    public int power;
-    public int money;
+    public long power;
+    public long money;
     //public List<string> generators;
     
 

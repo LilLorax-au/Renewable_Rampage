@@ -4,10 +4,10 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    public int score;
+    public long score;
     
     // UI updates on event
-    public event System.Action<int> OnScoreChanged;
+    public event System.Action<long> OnScoreChanged;
 
     private void Awake()
     {
@@ -24,19 +24,19 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void AddScore(int amount)
+    public void AddScore(long amount)
     {
         score += amount;
         OnScoreChanged?.Invoke(score);
     }
     
-    public void RemoveScore(int amount)
+    public void RemoveScore(long amount)
     {
         score -= amount;
         OnScoreChanged?.Invoke(score);
     }
 
-    public int GetScore()
+    public long GetScore()
     {
         return score;
     }
@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
         OnScoreChanged?.Invoke(score);
     }
     
-    public bool TrySpend(int amount)
+    public bool TrySpend(long amount)
     {
         if (score >= amount)
         {

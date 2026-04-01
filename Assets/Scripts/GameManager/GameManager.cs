@@ -45,14 +45,14 @@ public class GameManager : MonoBehaviour
     public float newGameTotalPowerOutput = 0.0f;
     public int newGameLevel = 1;
     //public int newPower = 0;
-    public int newMoney = 100;
+    public long newMoney = 100;
 
     [Header("(DEBUG) Data To Save:")]
     //CURRENT GAME DATA, THIS IS WHATS SAVED, YOU CAN SEE "GameData.cs" TO SEE DATA
     public float totalPowerOutput = 1f;
     [SerializeField] public int gameLevel;
-    [SerializeField] public int power;
-    [SerializeField] public int money;
+    [SerializeField] public long power;
+    [SerializeField] public long money;
     //public List<string> generators;
 
 
