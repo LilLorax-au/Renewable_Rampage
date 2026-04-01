@@ -155,7 +155,10 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2.6.1
         with:
-          #tag_name: dev
+          tag_name: ${{ steps.version.outputs.tag }}
+          release_name: Pre-Release ${{ steps.version.outputs.tag }}
+          draft: false
+          prerelease: true
           file: build-StandaloneWindows64
           path: build/StandaloneWindows64
 
