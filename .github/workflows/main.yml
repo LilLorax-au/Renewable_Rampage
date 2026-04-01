@@ -2,8 +2,6 @@ name: GameCI Template 🎮
 
 on: 
   push:
-      tags:
-        - "v*.*.*"
 
 
 
