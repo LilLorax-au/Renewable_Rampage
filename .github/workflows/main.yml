@@ -142,7 +142,7 @@ jobs:
          
       - uses: actions/download-artifact@v4
         with:
-         name: build-StandaloneWindows64
+         file: build-StandaloneWindows64.zip
          path: build/StandaloneWindows64
          
       - name: Bump version and push tag
