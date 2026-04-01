@@ -14,7 +14,7 @@ public class GeneratorButton : MonoBehaviour
     public Button buyManager;
     public Button buyUpgrade;
 
-
+    public TextMeshProUGUI nameText;
     public TextMeshProUGUI costText;
     public TextMeshProUGUI costManagerText;
     public TextMeshProUGUI costUpgradeText;
@@ -30,7 +30,7 @@ public class GeneratorButton : MonoBehaviour
     {
         generator = generatorHandler.generators[generatorIndex];
 
-
+        nameText.text = generator.name;
         costText.text = "$" + generator.GetNextCost().ToString("N0");
         buttonImage.sprite = generator.data.sprite;
 
