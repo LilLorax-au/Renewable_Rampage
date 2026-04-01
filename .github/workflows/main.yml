@@ -142,8 +142,8 @@ jobs:
          path: build/StandaloneWindows64
          
       - uses: actions/download-artifact@v4
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-         file: build-StandaloneWindows64.zip
          path: .github/build/StandaloneWindows64
          
       - uses: codacy/git-version@2.4.0
@@ -155,12 +155,12 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2.6.1
         with:
-          tag_name: ${{ steps.version.outputs.tag }}
+          tag_name: v1.0.0
           release_name: Pre-Release ${{ steps.version.outputs.tag }}
           draft: false
           prerelease: true
-          file: build-StandaloneWindows64
-          path: build/StandaloneWindows64
+          file: build-StandaloneWindows64.zip
+          path: .github/build/StandaloneWindows64
 
 
   buildAndroid:
