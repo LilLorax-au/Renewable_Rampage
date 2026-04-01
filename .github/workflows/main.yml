@@ -134,7 +134,7 @@ jobs:
       - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: StandaloneWindows64
-            
+        
           
       - uses: actions/upload-artifact@v4
         with:
@@ -145,6 +145,13 @@ jobs:
         with:
          file: build-StandaloneWindows64.zip
          path: .github/build/StandaloneWindows64
+         
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          mkdir -p ./app/build/outputs/apk/release
+          echo hello > ./app/build/outputs/apk/release/build-StandaloneWindows64.zip
           
       - name: Release
         uses: softprops/action-gh-release@v2.6.1
@@ -154,7 +161,7 @@ jobs:
           draft: false
           prerelease: true
           file: build-StandaloneWindows64.zip
-          path: .github/build/StandaloneWindows64
+          path: ./app/build/outputs/apk/release
 
 
   buildAndroid:
