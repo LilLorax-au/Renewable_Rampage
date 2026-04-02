@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     private GeneratorHandler generatorHandler;
 
+
     [Header("Scene Objects")]
     public GameObject menuObject;
     public GameObject levelObject;
@@ -51,8 +52,11 @@ public class GameManager : MonoBehaviour
     //CURRENT GAME DATA, THIS IS WHATS SAVED, YOU CAN SEE "GameData.cs" TO SEE DATA
     public float totalPowerOutput = 1f;
     [SerializeField] public int gameLevel;
+    [SerializeField] public int gameLevelHist;
     [SerializeField] public long power;
+    [SerializeField] public long powerHist;
     [SerializeField] public long money;
+    [SerializeField] public long moneyHist;
     //public List<string> generators;
 
 
@@ -92,6 +96,7 @@ public class GameManager : MonoBehaviour
             UpdateLevel();
             totalPowerOutputText.text = totalPowerOutput + "Kwh";
             money = ScoreManager.Instance.score;
+            Debug.Log(money.ToString());
             barValue = totalPowerOutput;
         }
         if (Keyboard.current.eKey.wasPressedThisFrame && debugMenu.activeSelf == false)
@@ -167,7 +172,8 @@ public class GameManager : MonoBehaviour
         {    
             bar.value = totalPowerOutput - totalPowerOutput;
             bar.maxValue = (barMaxValue + barValue) * Mathf.Pow(1.25f, gameLevel);
-            gameLevel = gameLevel + 1; 
+            gameLevel = gameLevel + 1;
+            gameLevelHist++;
             gameLevelText.text = "Lv:" + gameLevel;
             Debug.Log("LevelUp");
             return;
@@ -227,8 +233,12 @@ public class GameManager : MonoBehaviour
         //Debug.Log($"{levelObject} is loaded.");
         GameData data = SaveLoad.LoadData();
         gameLevel = data.gameLevel;
+        gameLevelHist = data.gameLevelHist;
         power = data.power;
+        powerHist = data.powerHist;
         money = data.money;
+        moneyHist = data.moneyHist;
+
         ScoreManager.Instance.ResetScore();
         ScoreManager.Instance.AddScore(money);
         Debug.Log($"Game Data is loaded.");
