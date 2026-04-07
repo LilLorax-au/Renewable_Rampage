@@ -15,7 +15,53 @@ public class StatHandler : MonoBehaviour
     void Start()
     {
         gm = FindAnyObjectByType<GameManager>();
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        CheckIndex();
+        UpdateStats();
+        IncrementIndex();
+
+    }
+
+    /// <summary>
+    /// Updates stats to most current values
+    /// </summary>
+    void UpdateStats()
+    {
+        stats[0][indexPower].text = "Power: " + gm.moneyHist.ToString();
+        stats[1][indexMoney].text = "Money: " + gm.moneyHist.ToString();
+        stats[2][indexLevel].text = "Level: " + gm.gameLevelHist.ToString();
+    }
+
+    /// <summary>
+    /// Check index is within range, if its not, sets value to 0
+    /// </summary>
+    void CheckIndex()
+    {
+        if (indexPower > stats[0].Count - 1) { indexPower = 0; }
+        if (indexMoney > stats[1].Count - 1) { indexMoney = 0; }
+        if (indexLevel > stats[2].Count - 1) { indexLevel = 0; }
+    }
+
+    /// <summary>
+    /// mass index update, increments only once per call
+    /// </summary>
+    void IncrementIndex()
+    {
+        indexPower++;
+        indexMoney++;
+        indexLevel++;
+    }
+
+    /// <summary>
+    /// Finds all instances of 'tags' array. NOTE: due to the nature of this at 02/04/2026, 
+    /// if the scrip is called before taged object exist, the stats wont writen to them.
+    /// </summary>
+    void FindStatTags()
+    {
         for (int i = 0; i < tags.Length; i++)
        {    
             stats.Add(new List<TextMeshProUGUI>());
@@ -27,25 +73,5 @@ public class StatHandler : MonoBehaviour
                 Debug.Log(stats[i][j].text);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (indexPower > stats[0].Count - 1) { indexPower = 0; }
-        if (indexMoney > stats[1].Count - 1) { indexMoney = 0; }
-        if (indexLevel > stats[2].Count - 1) { indexLevel = 0; }
-        Debug.Log(gm.money.ToString());
-        // Testing before major chnage
-        stats[0][indexPower].text = "Power: " + gm.moneyHist.ToString();
-        stats[1][indexMoney].text = "Money: " + gm.moneyHist.ToString();
-        stats[2][indexLevel].text = "Level: " + gm.gameLevelHist.ToString();
-
-
-        indexPower++;
-        indexMoney++;
-        indexLevel++;
-
-
     }
 }
