@@ -8,7 +8,8 @@ public class GeneratorInstance
     public float totalPower;
     public int level;
     public string name;
-    public int managerLevel;
+    
+    public bool hasManager = false;
 
 
 
@@ -27,24 +28,29 @@ public class GeneratorInstance
         return level = data.level;
     }
 
-    public int GetManagerLevel()
+    /*public int GetManagerLevel()
     {
         return managerLevel = data.managerLevel;
-    }
+    }*/
 
     public float GetPowerCap()
     {
-       return data.basePowerCap * count;
+       return data.basePowerCap * Mathf.Pow(1.15f, count);;
     }
 
     public float GetNextCost()
     {
-        return data.baseCost * Mathf.Pow(1.15f, count);
+        return data.baseCost * Mathf.Pow(1.25f, count);
+    }
+    
+    public float GetManagerCost()
+    {
+        return data.baseCost * 100f;
     }
     
     public float GetNextLevelCost()
     {
-        return 2 * (data.baseCost * Mathf.Pow(1.15f, level));
+        return data.baseCost * Mathf.Pow(1.5f, level);
     }
 
     public float GetNextSpeed()

@@ -17,8 +17,6 @@ public class OwnedGenerator : MonoBehaviour
 
     public Image managerImage;
 
-    public int managerLevel;
-
 
     [Tooltip("Slider Bar")]
     public Slider bar;
@@ -48,18 +46,15 @@ public class OwnedGenerator : MonoBehaviour
 
     void Update()
     {
-        managerLevel = generator.managerLevel;
         //has manager?
-        if (managerLevel >= 1)
+        if (generator.hasManager)
         {
             managerImage.enabled = true;
             if (bar.value >= bar.maxValue)
             {
                 generatorHandler.SellPower(generatorIndex);// basic manager logic
             }
-            
-        }
-        else if (managerLevel == 0)
+        }else
         {
             managerImage.enabled = false;
         }

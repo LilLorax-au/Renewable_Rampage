@@ -33,6 +33,7 @@ public class GeneratorButton : MonoBehaviour
         nameText.text = generator.name;
         costText.text = "$" + generator.GetNextCost().ToString("N0");
         costUpgradeText.text = "$" + generator.GetNextLevelCost().ToString("N0");
+        costManagerText.text = "$" + generator.GetManagerCost().ToString("N0");
         buttonImage.sprite = generator.data.sprite;
 
 
@@ -57,8 +58,8 @@ public class GeneratorButton : MonoBehaviour
 
     public void OnBuyManagerPressed()
     {
-        generatorHandler.ManagerLevel(generatorIndex);
-        //costManagerText.text = "$" + generator.GetNextCost().ToString("N0");
+        generatorHandler.AddManager(generatorIndex);
+        //costManagerText.text = "$" + generator.GetManagerCost().ToString("N0");
     }
 
 

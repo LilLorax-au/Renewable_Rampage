@@ -51,10 +51,18 @@ public class GeneratorHandler : MonoBehaviour
         }
     }
 
-    public void ManagerLevel(int index)
+    public void AddManager(int index)
     {
         var generator = generators[index];
-        generator.managerLevel++;
+        int cost = Mathf.RoundToInt(generator.GetManagerCost());
+        if (generator.hasManager)
+        {
+            return;
+        }
+        if (ScoreManager.Instance.TrySpend(cost))
+        {
+            generator.hasManager = true;
+        }
     }
 
     public float GetTotalProductionPerSecond()
