@@ -11,7 +11,6 @@ public class GeneratorHandler : MonoBehaviour
     private List<GameObject> genInstances = new List<GameObject>();
     
     public ScoreManager ScoreManager;
-    private float newSpeed;
 
     private void Start()
     {
@@ -20,9 +19,7 @@ public class GeneratorHandler : MonoBehaviour
 
     public void BuyGenerator(int index)
     {
-        
         var generator = generators[index];
-
         int cost = Mathf.RoundToInt(generator.GetNextCost());
 
         if (ScoreManager.Instance.TrySpend(cost))
@@ -30,8 +27,6 @@ public class GeneratorHandler : MonoBehaviour
             if (generator.count > 0)
             {
                 generator.count++;
-                
-
             }
             else
             {
@@ -41,24 +36,25 @@ public class GeneratorHandler : MonoBehaviour
                 count = generator.count;
                 genInstances.Add(newGen);
             }
-
-            //Debug.Log("Bought! New count: " + generator.count);
         }
     }
 
     public void LevelUp(int index)
     {
         var generator = generators[index];
-        int level = generator.level++;
-        float newSpeed = generator.GetNextSpeed();
-        //float baseSpeed = generator.baseGenerationSpeed * Mathf.Pow(1.15f, level);
+        int cost = Mathf.RoundToInt(generator.GetNextLevelCost());
+
+        if (ScoreManager.Instance.TrySpend(cost))
+        {
+            generator.level++;
+            /*generator.GetNextSpeed();*/
+        }
     }
 
     public void ManagerLevel(int index)
     {
         var generator = generators[index];
         generator.managerLevel++;
-        
     }
 
     public float GetTotalProductionPerSecond()
@@ -69,7 +65,6 @@ public class GeneratorHandler : MonoBehaviour
         {
             total += gen.GetProductionPerSecond();
         }
-
         return total;
     }
 
@@ -92,7 +87,6 @@ public class GeneratorHandler : MonoBehaviour
         {
             float production = gen.GetProductionPerSecond();
             gen.AddPower(production / 100);
-
         }
     }
 
@@ -102,15 +96,10 @@ public class GeneratorHandler : MonoBehaviour
         foreach (var gen in generators)
         {
             gen.count = 0;
-            
         }
-
         foreach (var gen in genInstances)
         {
             Destroy(gen.gameObject);
-
         }
     }
-
-
 }

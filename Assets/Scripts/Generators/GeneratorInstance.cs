@@ -39,13 +39,16 @@ public class GeneratorInstance
 
     public float GetNextCost()
     {
-        // exponential scaling (very common in clicker games)
         return data.baseCost * Mathf.Pow(1.15f, count);
+    }
+    
+    public float GetNextLevelCost()
+    {
+        return 2 * (data.baseCost * Mathf.Pow(1.15f, level));
     }
 
     public float GetNextSpeed()
     {
-        // exponential scaling (very common in clicker games)
         return data.baseProductionPerSecond * Mathf.Pow(1.15f, level);
     }
 
