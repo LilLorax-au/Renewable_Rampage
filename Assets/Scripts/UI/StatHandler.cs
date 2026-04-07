@@ -15,23 +15,15 @@ public class StatHandler : MonoBehaviour
     void Start()
     {
         gm = FindAnyObjectByType<GameManager>();
-
+        FindStatTags();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stats.Count > 0)
-        {
-            CheckIndex();
-            UpdateStats();
-            IncrementIndex();
-        }
-        else
-        {
-            FindStatTags();
-        }
-
+        CheckIndex();
+        UpdateStats();
+        IncrementIndex();
     }
 
     /// <summary>
@@ -39,7 +31,7 @@ public class StatHandler : MonoBehaviour
     /// </summary>
     void UpdateStats()
     {
-        stats[0][indexPower].text = "Power: " + gm.moneyHist.ToString();
+        stats[0][indexPower].text = "Power: " + (gm.powerHist).ToString() + "Amh";
         stats[1][indexMoney].text = "Money: " + gm.moneyHist.ToString();
         stats[2][indexLevel].text = "Level: " + gm.gameLevelHist.ToString();
     }

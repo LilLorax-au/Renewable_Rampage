@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         generatorHandler = FindAnyObjectByType<GeneratorHandler>();
         totalPowerOutput = generatorHandler.GetTotalProductionPerSecond();
+        powerHist = (long) generatorHandler.totalGenPowerHist;
 
         debugMenu.SetActive(false);
         GameData data = SaveLoad.LoadData();
@@ -95,8 +96,11 @@ public class GameManager : MonoBehaviour
             totalPowerOutput = generatorHandler.GetTotalProductionPerSecond();
             UpdateLevel();
             totalPowerOutputText.text = totalPowerOutput + "Kwh";
+            powerHist = (long) generatorHandler.totalGenPowerHist;
+            //generatorHandler.UpdateTotalGenPowerHist();
             money = ScoreManager.Instance.score;
-            // Debug.Log(money.ToString());
+            moneyHist = ScoreManager.Instance.scoreHist;
+            //Debug.Log(totalPowerOutput.ToString());
             barValue = totalPowerOutput;
         }
         if (Keyboard.current.eKey.wasPressedThisFrame && debugMenu.activeSelf == false)
@@ -200,6 +204,8 @@ public class GameManager : MonoBehaviour
         //////////////////////////////////////////ISTANTIATE FRESH VALUES///////////////////////////////
         totalPowerOutput = newGameTotalPowerOutput;
         gameLevel = newGameLevel;
+        // Temp foor gameLevelHist
+        gameLevelHist = newGameLevel;
         power = 0;
         money = newMoney;
         ScoreManager.Instance.ResetScore();

@@ -6,6 +6,7 @@ public class GeneratorInstance
     public GeneratorData data;
     public int count;
     public float totalPower;
+    public float totalPowerHist { get; private set; }
     public int level;
     public string name;
     
@@ -67,6 +68,7 @@ public class GeneratorInstance
         else
         {
             totalPower += amount;
+            totalPowerHist += amount;
         }
     }
 

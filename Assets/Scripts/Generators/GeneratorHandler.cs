@@ -6,6 +6,7 @@ public class GeneratorHandler : MonoBehaviour
 {
     public List<GeneratorInstance> generators;
     public int count;
+    public float totalGenPowerHist;
     public GameObject OwnedGeneratorPrefab;
     public Transform GeneratorsPanel;
     private List<GameObject> genInstances = new List<GameObject>();
@@ -84,6 +85,14 @@ public class GeneratorHandler : MonoBehaviour
         return total;
     }
 
+    public void UpdateTotalGenPowerHist()
+    {
+        foreach (var gen in generators)
+            {
+                totalGenPowerHist += gen.totalPowerHist;
+            }
+    }
+
     public void SellPower(int index)
     {
         GeneratorInstance generator = generators[index];
@@ -103,6 +112,7 @@ public class GeneratorHandler : MonoBehaviour
         {
             float production = gen.GetProductionPerSecond();
             gen.AddPower(production / 100);
+            //totalGenPowerHist += gen.totalPowerHist;
         }
     }
 

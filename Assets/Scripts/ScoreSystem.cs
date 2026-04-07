@@ -5,6 +5,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     public long score;
+    public long scoreHist;
     
     // UI updates on event
     public event System.Action<long> OnScoreChanged;
@@ -27,6 +28,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(long amount)
     {
         score += amount;
+        scoreHist += amount;
         OnScoreChanged?.Invoke(score);
     }
     
