@@ -17,12 +17,12 @@ public class OwnedGenerator : MonoBehaviour
 
     public Image managerImage;
 
-    public int managerLevel;
-
 
     [Tooltip("Slider Bar")]
     public Slider bar;
     private float slideValue;
+    public GameObject barFill;
+    public Color barColor;
 
     [Tooltip("Sell whenever or only when slider is full")]
     public bool sellAnytime;
@@ -48,18 +48,15 @@ public class OwnedGenerator : MonoBehaviour
 
     void Update()
     {
-        managerLevel = generator.managerLevel;
         //has manager?
-        if (managerLevel >= 1)
+        if (generator.hasManager)
         {
             managerImage.enabled = true;
             if (bar.value >= bar.maxValue)
             {
                 generatorHandler.SellPower(generatorIndex);// basic manager logic
             }
-            
-        }
-        else if (managerLevel == 0)
+        }else
         {
             managerImage.enabled = false;
         }
@@ -94,6 +91,15 @@ public class OwnedGenerator : MonoBehaviour
         {
             bar.maxValue = generator.GetPowerCap();
             bar.value = generator.totalPower;
+        }
+
+        if (bar.value >= bar.maxValue)
+        {
+            barFill.GetComponent<Image>().color = Color.green;
+        }
+        else
+        {
+            barFill.GetComponent<Image>().color = barColor;
         }
     }
 

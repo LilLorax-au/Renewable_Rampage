@@ -23,9 +23,9 @@ public class TabToggler : MonoBehaviour
         // Hides other tabs
         foreach (var t in tabs)
         {
-            t.SetActive(false);
+            t.transform.localScale = new Vector3(0, 0, 0);
         }
-        currentTab.SetActive(true);
+        currentTab.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SetBtn(GameObject btn)

@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             UpdateLevel();
             totalPowerOutputText.text = totalPowerOutput + "Kwh";
             money = ScoreManager.Instance.score;
-            Debug.Log(money.ToString());
+            // Debug.Log(money.ToString());
             barValue = totalPowerOutput;
         }
         if (Keyboard.current.eKey.wasPressedThisFrame && debugMenu.activeSelf == false)
