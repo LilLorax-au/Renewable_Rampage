@@ -42,6 +42,10 @@ public class GeneratorHandler : MonoBehaviour
     public void LevelUp(int index)
     {
         var generator = generators[index];
+        if (generator.count <= 0)
+        {
+            return;
+        }
         int cost = Mathf.RoundToInt(generator.GetNextLevelCost());
 
         if (ScoreManager.Instance.TrySpend(cost))
@@ -54,6 +58,10 @@ public class GeneratorHandler : MonoBehaviour
     public void AddManager(int index)
     {
         var generator = generators[index];
+        if (generator.count <= 0)
+        {
+            return;
+        }
         int cost = Mathf.RoundToInt(generator.GetManagerCost());
         if (generator.hasManager)
         {
