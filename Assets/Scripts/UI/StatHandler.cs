@@ -15,14 +15,22 @@ public class StatHandler : MonoBehaviour
     void Start()
     {
         gm = FindAnyObjectByType<GameManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckIndex();
-        UpdateStats();
-        IncrementIndex();
+        if (stats.Count > 0)
+        {
+            CheckIndex();
+            UpdateStats();
+            IncrementIndex();
+        }
+        else
+        {
+            FindStatTags();
+        }
 
     }
 
