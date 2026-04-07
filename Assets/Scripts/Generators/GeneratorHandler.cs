@@ -42,7 +42,7 @@ public class GeneratorHandler : MonoBehaviour
                 genInstances.Add(newGen);
             }
 
-            Debug.Log("Bought! New count: " + generator.count);
+            //Debug.Log("Bought! New count: " + generator.count);
         }
     }
 

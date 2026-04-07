@@ -11,10 +11,13 @@ public class DebugStats : MonoBehaviour
     private float ticksPerSecond;
     private float frameTime;
     private float fps;
+    
+    private ScoreManager scoreManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        scoreManager = FindObjectOfType<ScoreManager>();
         timeTick = GameObject.Find("Time_Tick_System").GetComponent<TimeTickSystem>();
         _generatorHandler = GameObject.Find("Generator_Handler").GetComponent<GeneratorHandler>();
 
@@ -36,5 +39,18 @@ public class DebugStats : MonoBehaviour
 
         tickText.text = ticksPerSecond.ToString() + "ms";
         /*text.text = "Power: " + _generatorHandler.GetPower().ToString("F");*/
+    }
+
+    /*Fix for debug menu, use these to change score with buttons*/
+    public void DebugAddScore(int score)
+    {
+        long longValue = score;
+        scoreManager.AddScore(longValue);
+    }
+
+    public void DebugRemoveScore(int score)
+    {
+        long longValue = score;
+        scoreManager.RemoveScore(longValue);
     }
 }
