@@ -21,6 +21,8 @@ public class OwnedGenerator : MonoBehaviour
     [Tooltip("Slider Bar")]
     public Slider bar;
     private float slideValue;
+    public GameObject barFill;
+    public Color barColor;
 
     [Tooltip("Sell whenever or only when slider is full")]
     public bool sellAnytime;
@@ -89,6 +91,15 @@ public class OwnedGenerator : MonoBehaviour
         {
             bar.maxValue = generator.GetPowerCap();
             bar.value = generator.totalPower;
+        }
+
+        if (bar.value >= bar.maxValue)
+        {
+            barFill.GetComponent<Image>().color = Color.green;
+        }
+        else
+        {
+            barFill.GetComponent<Image>().color = barColor;
         }
     }
 
